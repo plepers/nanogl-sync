@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+- '0.12'
+env:
+  global:
+  - secure: xxx
+  - secure: xxx
+branches:
+  only:
+  - develop
+  - master
+cache:
+  directories:
+  - node_modules
+deploy:
+  provider: npm
+  email: contact@makemepulse.com
+  api_key:
+    secure: xxx
+  on:
+    branch: master
+    repo: plepers/nanogl-sync
