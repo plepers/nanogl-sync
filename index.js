@@ -1,43 +1,6 @@
 var when = require('when');
 
 
-
-var __pool = [];
-
-var _autoi;
-
-function _auto( interval ){
-  if( interval === undefined ){
-    interval = 32;
-  }
-  _stop();
-  _autoi = setInterval( _resolve, interval );
-}
-
-function _stop(){
-  clearInterval( _autoi );
-}
-
-
-function _resolve(){
-  for (var i = __pool.length - 1; i >= 0; i--) {
-    if( __pool[i].isSync() ){
-      __pool[i]._complete();
-    }
-  }
-}
-
-
-function _factory( gl ){
-  if( gl.fenceSync ){
-    return new NativeImpl( gl );
-  } else {
-    return new ShimImpl();
-  }
-}
-
-
-
 /**
  * @class
  * @classdesc 
@@ -151,6 +114,12 @@ Sync.prototype = {
 };
 
 
+//    _  _      _   _           ___            _ 
+//   | \| |__ _| |_(_)_ _____  |_ _|_ __  _ __| |
+//   | .` / _` |  _| \ V / -_)  | || '  \| '_ \ |
+//   |_|\_\__,_|\__|_|\_/\___| |___|_|_|_| .__/_|
+//                                       |_|     
+
 
 function NativeImpl( gl ){
   this.gl = gl;
@@ -179,6 +148,12 @@ NativeImpl.prototype = {
 
 };
 
+//    ___ _    _         ___            _ 
+//   / __| |_ (_)_ __   |_ _|_ __  _ __| |
+//   \__ \ ' \| | '  \   | || '  \| '_ \ |
+//   |___/_||_|_|_|_|_| |___|_|_|_| .__/_|
+//                                |_|     
+
 
 function ShimImpl(){}
 
@@ -197,6 +172,50 @@ ShimImpl.prototype = {
   },
 
 };
+
+
+
+
+//                   _                 _      _       
+//    _ __  ___  ___| |  _  _ _ __  __| |__ _| |_ ___ 
+//   | '_ \/ _ \/ _ \ | | || | '_ \/ _` / _` |  _/ -_)
+//   | .__/\___/\___/_|  \_,_| .__/\__,_\__,_|\__\___|
+//   |_|                     |_|                      
+var __pool = [];
+
+var _autoi;
+
+function _auto( interval ){
+  if( interval === undefined ){
+    interval = 32;
+  }
+  _stop();
+  _autoi = setInterval( _resolve, interval );
+}
+
+function _stop(){
+  clearInterval( _autoi );
+}
+
+
+function _resolve(){
+  for (var i = __pool.length - 1; i >= 0; i--) {
+    if( __pool[i].isSync() ){
+      __pool[i]._complete();
+    }
+  }
+}
+
+
+function _factory( gl ){
+  if( gl.fenceSync ){
+    return new NativeImpl( gl );
+  } else {
+    return new ShimImpl();
+  }
+}
+
+
 
 
 
