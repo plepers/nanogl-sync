@@ -93,11 +93,11 @@ describe( "Sync", function(){
   //   var sync = new Sync(gl);
   //   workload()
   //   sync.insert();
-  //   expect( sync.isSync() ).to.be( false )
+  //   expect( sync.isSignaled() ).to.be( false )
   //   var res = sync.clientWaitSync(1e3);
 
     // expect( res ).to.be( gl.CONDITION_SATISFIED )
-    // expect( sync.isSync() ).to.be( true )   
+    // expect( sync.isSignaled() ).to.be( true )   
   
   // });
 

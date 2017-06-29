@@ -3,9 +3,9 @@ var when = require('when');
 
 /**
  * @class
- * @classdesc 
+ * @classdesc Wrapper around WebGLSync object. With a promise based completion
  *
- *  @param {WebGLRenderingContext} gl webgl context the vao belongs to
+ *  @param {WebGLRenderingContext} gl webgl context the sync belongs to
  */
 function Sync( gl ){
 
@@ -47,12 +47,14 @@ Sync.prototype = {
     this.promise = null;
   },
 
-
-  isSync : function(){
+  /**
+   * return true if the GL_SYNC_STATUS is GL_SIGNALED
+   */
+  isSignaled : function(){
     if( this._sync === null ) {
       return false;
     }
-    return this._sync.isSync();
+    return this._sync.isSignaled();
   },
 
   /**
@@ -130,7 +132,7 @@ function NativeImpl( gl ){
 
 NativeImpl.prototype = {
   
-  isSync : function(){
+  isSignaled : function(){
     //gl.SYNC_STATUS = gl.SIGNALED
     return this.gl.getSyncParameter( this.sync, 0x9114 ) === 0x9119; 
   },
@@ -159,7 +161,7 @@ function ShimImpl(){}
 
 ShimImpl.prototype = {
   
-  isSync : function(){
+  isSignaled : function(){
     return true;
   },
 
@@ -181,6 +183,7 @@ ShimImpl.prototype = {
 //   | '_ \/ _ \/ _ \ | | || | '_ \/ _` / _` |  _/ -_)
 //   | .__/\___/\___/_|  \_,_| .__/\__,_\__,_|\__\___|
 //   |_|                     |_|                      
+
 var __pool = [];
 
 var _autoi;
@@ -200,7 +203,7 @@ function _stop(){
 
 function _resolve(){
   for (var i = __pool.length - 1; i >= 0; i--) {
-    if( __pool[i].isSync() ){
+    if( __pool[i].isSignaled() ){
       __pool[i]._complete();
     }
   }
