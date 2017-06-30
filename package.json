@@ -1,6 +1,6 @@
 {
   "name": "nanogl-sync",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "webgl's fence Sync EZPZ and shim for webgl1",
   "main": "index.js",
   "scripts": {
