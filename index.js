@@ -146,9 +146,10 @@ NativeImpl.prototype = {
 
   clientWaitSync : function( timeout ){
     return this.gl.clientWaitSync( this.sync, this.gl.SYNC_FLUSH_COMMANDS_BIT, timeout );
-  },
+  }
 
 };
+
 
 //    ___ _    _         ___            _ 
 //   / __| |_ (_)_ __   |_ _|_ __  _ __| |
@@ -171,11 +172,9 @@ ShimImpl.prototype = {
 
   clientWaitSync : function(){
     return 0x911A; //GL_ALREADY_SIGNALED
-  },
+  }
 
 };
-
-
 
 
 //                   _                 _      _       
