@@ -4,7 +4,7 @@
   "description": "webgl's fence Sync EZPZ and shim for webgl1",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test_gl2",
+    "test": "tsc && karma start --webgl-version=2 && karma start",
     "test_gl1": "tsc && karma start",
     "test_gl2": "tsc && karma start --webgl-version=2"
   },
