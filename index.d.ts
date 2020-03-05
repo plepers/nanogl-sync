@@ -1,7 +1,6 @@
-import when = require('when');
-declare class Sync {
+export default class Sync {
     gl: WebGLRenderingContext | WebGL2RenderingContext;
-    promise: when.Promise<unknown>;
+    readonly promise: Promise<unknown>;
     private _sync;
     private _invalidated;
     private _pooled;
@@ -23,4 +22,4 @@ declare class Sync {
 declare function _auto(interval: number): void;
 declare function _stop(): void;
 declare function _resolve(): void;
-export = Sync;
+export {};

@@ -1,16 +1,15 @@
-"use strict";
-const when = require("when");
 function isWebgl2(gl) {
     return gl.fenceSync !== undefined;
 }
-class Sync {
+export default class Sync {
     constructor(gl) {
         this.gl = gl;
         this._sync = null;
         this._invalidated = false;
         this._pooled = false;
-        this._defer = when.defer();
-        this.promise = this._defer.promise;
+        this.promise = new Promise((resolve, reject) => {
+            this._defer = { resolve, reject };
+        });
     }
     insert() {
         if (this._sync === null && !this._invalidated) {
@@ -118,4 +117,3 @@ function _factory(gl) {
         return new ShimImpl();
     }
 }
-module.exports = Sync;
