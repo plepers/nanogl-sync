@@ -1,6 +1,8 @@
+import Sync         from '../index';
+
+
 var GLArrayBuffer = require( 'nanogl/arraybuffer' );
 var Program     = require( 'nanogl/program' );
-var Sync         = require( '../index' );
 
 var expect  = require( 'expect.js' );
 
@@ -67,7 +69,7 @@ describe( "Sync", function(){
 
   it( "dispose should resolve", function( done ){
     var sync = new Sync( gl );
-    sync.promise.ensure( function(){
+    sync.promise.finally( function(){
       done()
     })
 

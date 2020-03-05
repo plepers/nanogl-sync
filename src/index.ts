@@ -1,5 +1,3 @@
-import when = require( 'when' );
-
 
 
 
@@ -15,15 +13,15 @@ function isWebgl2(gl: WebGLRenderingContext | WebGL2RenderingContext): gl is Web
  *  @param {WebGLRenderingContext} gl webgl context the sync belongs to
  */
 
-class Sync {
+export default class Sync {
 
   gl: WebGLRenderingContext | WebGL2RenderingContext;
-  promise: when.Promise<unknown>;
+  readonly promise: Promise<unknown>;
 
   private _sync: ISyncImplementation | null;
   private _invalidated: boolean;
   private _pooled: boolean;
-  private _defer: when.Deferred<unknown>;
+  private _defer : any;
 
 
 
@@ -34,8 +32,9 @@ class Sync {
     this._invalidated = false;
     this._pooled = false;
 
-    this._defer = when.defer();
-    this.promise = this._defer.promise;
+    this.promise = new Promise<void>((resolve, reject)=>{
+        this._defer = {resolve,reject};
+    });
 
   }
 
@@ -238,9 +237,3 @@ function _factory(gl: WebGLRenderingContext | WebGL2RenderingContext): ISyncImpl
   }
 }
 
-
-
-
-
-
-export = Sync;
