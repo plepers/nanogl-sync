@@ -117,7 +117,7 @@ export default class Sync {
   /**
    * Release everything related to this Sync.
    *
-   * Used by {@link Sync#dispose} and {@link Sync#complete}.
+   * Used by {@link Sync#dispose} and {@link Sync#_complete}.
    */
   _release() {
     this._defer.reject(null);
