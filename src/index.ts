@@ -9,7 +9,7 @@ function isWebgl2(gl: WebGLRenderingContext | WebGL2RenderingContext): gl is Web
 /**
  * This class can be used as a wrapper around a WebGLSync object, and provides a promise based completion.
  *
- * It is used to synchronize activities between the GPU and the application, and is only available for WebGL2.
+ * It is used to synchronize activities between the GPU and the application, and is only available for WebGL2. As a fallback, the Sync will be immediately signaled if the WebGLSync object isn't available.
  */
 export default class Sync {
   /** The webgl context this Sync belongs to */
