@@ -174,6 +174,7 @@ export interface ISyncImplementation {
   dispose(): void;
   /**
    * Shortcut to `gl.clientWaitSync`.
+   * @param {number} timeout The time to wait for the sync object to become signaled (in nanosec)
    */
   clientWaitSync(timeout: number): GLenum;
 }
