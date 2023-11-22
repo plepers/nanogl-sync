@@ -162,7 +162,7 @@ export default class Sync {
 };
 
 
-
+/** The implementation of a WebGLSync object. */
 export interface ISyncImplementation {
   /**
    * Know whether the `GL_SYNC_STATUS` is `GL_SIGNALED` or not.
