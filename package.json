@@ -6,7 +6,8 @@
   "scripts": {
     "test": "tsc && karma start --webgl-version=2 && karma start",
     "test_gl1": "tsc && karma start",
-    "test_gl2": "tsc && karma start --webgl-version=2"
+    "test_gl2": "tsc && karma start --webgl-version=2",
+    "docs": "typedoc && del docs/** '!docs/data.json'"
   },
   "repository": {
     "type": "git",
@@ -39,6 +40,7 @@
     "@babel/core": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
     "babelify": "^10.0.0",
+    "del-cli": "^5.0.0",
     "expect.js": "^0.3.1",
     "karma": "^4.4.1",
     "karma-browserify": "^6.1.0",
@@ -51,7 +53,9 @@
     "nanogl": "^2.0.1",
     "sinon": "^7.5.0",
     "stringify": "^5.2.0",
-    "typescript": "^3.7.2",
+    "typedoc": "^0.23.24",
+    "typedoc-plugin-rename-defaults": "^0.6.4",
+    "typescript": "^4.9.5",
     "watchify": "^3.11.1"
   }
 }

@@ -1,0 +1,1272 @@
+{
+	"id": 0,
+	"name": "nanogl-sync",
+	"kind": 1,
+	"kindString": "Project",
+	"flags": {},
+	"originalName": "",
+	"children": [
+		{
+			"id": 9,
+			"name": "Sync",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "This class can be used as a wrapper around a WebGLSync object, and provides a promise based completion.\n\nIt is used to synchronize activities between the GPU and the application, and is only available for WebGL2. As a fallback, the Sync will be immediately signaled if the WebGLSync object isn't available."
+					}
+				]
+			},
+			"originalName": "default",
+			"children": [
+				{
+					"id": 20,
+					"name": "constructor",
+					"kind": 512,
+					"kindString": "Constructor",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 33,
+							"character": 2,
+							"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L33"
+						}
+					],
+					"signatures": [
+						{
+							"id": 21,
+							"name": "new Sync",
+							"kind": 16384,
+							"kindString": "Constructor signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 22,
+									"name": "gl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The webgl context this Sync belongs to"
+											}
+										]
+									},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "reference",
+												"name": "WebGLRenderingContext",
+												"qualifiedName": "WebGLRenderingContext",
+												"package": "typescript"
+											},
+											{
+												"type": "reference",
+												"name": "WebGL2RenderingContext",
+												"qualifiedName": "WebGL2RenderingContext",
+												"package": "typescript"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"id": 9,
+								"name": "default"
+							}
+						}
+					]
+				},
+				{
+					"id": 28,
+					"name": "_defer",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPrivate": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The object providing the promise's resolve & reject functions"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 27,
+							"character": 10,
+							"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L27"
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					}
+				},
+				{
+					"id": 26,
+					"name": "_invalidated",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPrivate": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Whether the Sync is invalidated or not. The Sync is invalidated on release."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 23,
+							"character": 10,
+							"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L23"
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				},
+				{
+					"id": 27,
+					"name": "_pooled",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPrivate": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Whether the Sync is pooled or not."
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 25,
+							"character": 10,
+							"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L25"
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				},
+				{
+					"id": 25,
+					"name": "_sync",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPrivate": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The implementation of the WebGLSync object"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 21,
+							"character": 10,
+							"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L21"
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "literal",
+								"value": null
+							},
+							{
+								"type": "reference",
+								"id": 1,
+								"name": "ISyncImplementation"
+							}
+						]
+					}
+				},
+				{
+					"id": 23,
+					"name": "gl",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The webgl context this Sync belongs to"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 16,
+							"character": 2,
+							"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L16"
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "reference",
+								"name": "WebGLRenderingContext",
+								"qualifiedName": "WebGLRenderingContext",
+								"package": "typescript"
+							},
+							{
+								"type": "reference",
+								"name": "WebGL2RenderingContext",
+								"qualifiedName": "WebGL2RenderingContext",
+								"package": "typescript"
+							}
+						]
+					}
+				},
+				{
+					"id": 24,
+					"name": "promise",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isReadonly": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The underlying promise"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 18,
+							"character": 11,
+							"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L18"
+						}
+					],
+					"type": {
+						"type": "reference",
+						"typeArguments": [
+							{
+								"type": "intrinsic",
+								"name": "unknown"
+							}
+						],
+						"name": "Promise",
+						"qualifiedName": "Promise",
+						"package": "typescript"
+					}
+				},
+				{
+					"id": 13,
+					"name": "auto",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isStatic": true
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 53,
+							"character": 9,
+							"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L53"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 14,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "index.ts",
+									"line": 252,
+									"character": 9,
+									"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L252"
+								}
+							],
+							"signatures": [
+								{
+									"id": 15,
+									"name": "__type",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Start the pool auto resolve loop."
+											}
+										]
+									},
+									"parameters": [
+										{
+											"id": 16,
+											"name": "interval",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": "_auto"
+				},
+				{
+					"id": 10,
+					"name": "resolve",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isStatic": true
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 49,
+							"character": 9,
+							"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L49"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 11,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "index.ts",
+									"line": 265,
+									"character": 9,
+									"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L265"
+								}
+							],
+							"signatures": [
+								{
+									"id": 12,
+									"name": "__type",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Call "
+											},
+											{
+												"kind": "inline-tag",
+												"tag": "@link",
+												"text": "_complete",
+												"target": 50
+											},
+											{
+												"kind": "text",
+												"text": " for every signaled Sync in the pool."
+											}
+										]
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": "_resolve"
+				},
+				{
+					"id": 17,
+					"name": "stop",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isStatic": true
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 57,
+							"character": 9,
+							"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L57"
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 18,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "index.ts",
+									"line": 260,
+									"character": 9,
+									"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L260"
+								}
+							],
+							"signatures": [
+								{
+									"id": 19,
+									"name": "__type",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Stop the pool auto resolve loop."
+											}
+										]
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": "_stop"
+				},
+				{
+					"id": 50,
+					"name": "_complete",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 135,
+							"character": 2,
+							"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L135"
+						}
+					],
+					"signatures": [
+						{
+							"id": 51,
+							"name": "_complete",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Resolve the promise and release everything related to this Sync."
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				},
+				{
+					"id": 52,
+					"name": "_pool",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 143,
+							"character": 2,
+							"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L143"
+						}
+					],
+					"signatures": [
+						{
+							"id": 53,
+							"name": "_pool",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Pool this Sync."
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				},
+				{
+					"id": 48,
+					"name": "_release",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 122,
+							"character": 2,
+							"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L122"
+						}
+					],
+					"signatures": [
+						{
+							"id": 49,
+							"name": "_release",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Release everything related to this Sync.\n\nUsed by "
+									},
+									{
+										"kind": "inline-tag",
+										"tag": "@link",
+										"text": "dispose",
+										"target": 31
+									},
+									{
+										"kind": "text",
+										"text": " and "
+									},
+									{
+										"kind": "inline-tag",
+										"tag": "@link",
+										"text": "_complete",
+										"target": 50
+									},
+									{
+										"kind": "text",
+										"text": "."
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				},
+				{
+					"id": 54,
+					"name": "_unpool",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 153,
+							"character": 2,
+							"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L153"
+						}
+					],
+					"signatures": [
+						{
+							"id": 55,
+							"name": "_unpool",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Remove this Sync from the pool."
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				},
+				{
+					"id": 45,
+					"name": "clientWaitSync",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 109,
+							"character": 2,
+							"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L109"
+						}
+					],
+					"signatures": [
+						{
+							"id": 46,
+							"name": "clientWaitSync",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Shortcut to "
+									},
+									{
+										"kind": "code",
+										"text": "`gl.clientWaitSync`"
+									},
+									{
+										"kind": "text",
+										"text": ".\n\n**Important :** The "
+									},
+									{
+										"kind": "inline-tag",
+										"tag": "@link",
+										"text": "insert",
+										"target": 29
+									},
+									{
+										"kind": "text",
+										"text": " method must have been called before calling this method."
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 47,
+									"name": "timeout",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The time to wait for the sync object to become signaled (in nanosec), defaults to 100ms"
+											}
+										]
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1e6"
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					]
+				},
+				{
+					"id": 31,
+					"name": "dispose",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 79,
+							"character": 2,
+							"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L79"
+						}
+					],
+					"signatures": [
+						{
+							"id": 32,
+							"name": "dispose",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Dispose of everything related related to this Sync."
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				},
+				{
+					"id": 29,
+					"name": "insert",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 69,
+							"character": 2,
+							"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L69"
+						}
+					],
+					"signatures": [
+						{
+							"id": 30,
+							"name": "insert",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Create a WebGLSync object and insert it in the GL command stream. Then pool this Sync.\n\nThe promise will be resolved when the Sync is signaled."
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				},
+				{
+					"id": 33,
+					"name": "isSignaled",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 86,
+							"character": 2,
+							"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L86"
+						}
+					],
+					"signatures": [
+						{
+							"id": 34,
+							"name": "isSignaled",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Know whether the "
+									},
+									{
+										"kind": "code",
+										"text": "`GL_SYNC_STATUS`"
+									},
+									{
+										"kind": "text",
+										"text": " is "
+									},
+									{
+										"kind": "code",
+										"text": "`GL_SIGNALED`"
+									},
+									{
+										"kind": "text",
+										"text": " or not."
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							}
+						}
+					]
+				},
+				{
+					"id": 35,
+					"name": "then",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 98,
+							"character": 2,
+							"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L98"
+						}
+					],
+					"signatures": [
+						{
+							"id": 36,
+							"name": "then",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Shortcut to "
+									},
+									{
+										"kind": "code",
+										"text": "`this.promise.then`"
+									},
+									{
+										"kind": "text",
+										"text": "."
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 37,
+									"name": "onFulfilled",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The callback to be called when the promise is fulfilled"
+											}
+										]
+									},
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 38,
+											"name": "__type",
+											"kind": 65536,
+											"kindString": "Type literal",
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "index.ts",
+													"line": 98,
+													"character": 20,
+													"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L98"
+												}
+											],
+											"signatures": [
+												{
+													"id": 39,
+													"name": "__type",
+													"kind": 4096,
+													"kindString": "Call signature",
+													"flags": {},
+													"parameters": [
+														{
+															"id": 40,
+															"name": "value",
+															"kind": 32768,
+															"kindString": "Parameter",
+															"flags": {},
+															"type": {
+																"type": "intrinsic",
+																"name": "unknown"
+															}
+														}
+													],
+													"type": {
+														"type": "intrinsic",
+														"name": "unknown"
+													}
+												}
+											]
+										}
+									}
+								},
+								{
+									"id": 41,
+									"name": "onRejected",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The callback to be called when the promise is rejected"
+											}
+										]
+									},
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 42,
+											"name": "__type",
+											"kind": 65536,
+											"kindString": "Type literal",
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "index.ts",
+													"line": 98,
+													"character": 61,
+													"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L98"
+												}
+											],
+											"signatures": [
+												{
+													"id": 43,
+													"name": "__type",
+													"kind": 4096,
+													"kindString": "Call signature",
+													"flags": {},
+													"parameters": [
+														{
+															"id": 44,
+															"name": "reason",
+															"kind": 32768,
+															"kindString": "Parameter",
+															"flags": {},
+															"type": {
+																"type": "intrinsic",
+																"name": "any"
+															}
+														}
+													],
+													"type": {
+														"type": "intrinsic",
+														"name": "unknown"
+													}
+												}
+											]
+										}
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Constructors",
+					"children": [
+						20
+					]
+				},
+				{
+					"title": "Properties",
+					"children": [
+						28,
+						26,
+						27,
+						25,
+						23,
+						24,
+						13,
+						10,
+						17
+					]
+				},
+				{
+					"title": "Methods",
+					"children": [
+						50,
+						52,
+						48,
+						54,
+						45,
+						31,
+						29,
+						33,
+						35
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "index.ts",
+					"line": 14,
+					"character": 21,
+					"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L14"
+				}
+			]
+		},
+		{
+			"id": 1,
+			"name": "ISyncImplementation",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "The implementation of a WebGLSync object."
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 6,
+					"name": "clientWaitSync",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 179,
+							"character": 2,
+							"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L179"
+						}
+					],
+					"signatures": [
+						{
+							"id": 7,
+							"name": "clientWaitSync",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Shortcut to "
+									},
+									{
+										"kind": "code",
+										"text": "`gl.clientWaitSync`"
+									},
+									{
+										"kind": "text",
+										"text": "."
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 8,
+									"name": "timeout",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The time to wait for the sync object to become signaled (in nanosec)"
+											}
+										]
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					]
+				},
+				{
+					"id": 4,
+					"name": "dispose",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 174,
+							"character": 2,
+							"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L174"
+						}
+					],
+					"signatures": [
+						{
+							"id": 5,
+							"name": "dispose",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Dispose of everything related to this SyncImplementation."
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					]
+				},
+				{
+					"id": 2,
+					"name": "isSignaled",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 170,
+							"character": 2,
+							"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L170"
+						}
+					],
+					"signatures": [
+						{
+							"id": 3,
+							"name": "isSignaled",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Know whether the "
+									},
+									{
+										"kind": "code",
+										"text": "`GL_SYNC_STATUS`"
+									},
+									{
+										"kind": "text",
+										"text": " is "
+									},
+									{
+										"kind": "code",
+										"text": "`GL_SIGNALED`"
+									},
+									{
+										"kind": "text",
+										"text": " or not."
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							}
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Methods",
+					"children": [
+						6,
+						4,
+						2
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "index.ts",
+					"line": 166,
+					"character": 17,
+					"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L166"
+				}
+			]
+		}
+	],
+	"groups": [
+		{
+			"title": "Classes",
+			"children": [
+				9
+			]
+		},
+		{
+			"title": "Interfaces",
+			"children": [
+				1
+			]
+		}
+	],
+	"sources": [
+		{
+			"fileName": "index.ts",
+			"line": 4,
+			"character": 0,
+			"url": "https://github.com/evanmartiin/nanogl-sync/blob/23ac2ad/src/index.ts#L4"
+		}
+	]
+}

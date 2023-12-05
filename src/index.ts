@@ -7,24 +7,29 @@ function isWebgl2(gl: WebGLRenderingContext | WebGL2RenderingContext): gl is Web
 
 
 /**
- * @class
- * @classdesc Wrapper around WebGLSync object. With a promise based completion
+ * This class can be used as a wrapper around a WebGLSync object, and provides a promise based completion.
  *
- *  @param {WebGLRenderingContext} gl webgl context the sync belongs to
+ * It is used to synchronize activities between the GPU and the application, and is only available for WebGL2. As a fallback, the Sync will be immediately signaled if the WebGLSync object isn't available.
  */
-
 export default class Sync {
-
+  /** The webgl context this Sync belongs to */
   gl: WebGLRenderingContext | WebGL2RenderingContext;
+  /** The underlying promise */
   readonly promise: Promise<unknown>;
 
+  /** The implementation of the WebGLSync object */
   private _sync: ISyncImplementation | null;
+  /** Whether the Sync is invalidated or not. The Sync is invalidated on release. */
   private _invalidated: boolean;
+  /** Whether the Sync is pooled or not. */
   private _pooled: boolean;
+  /** The object providing the promise's resolve & reject functions */
   private _defer : any;
 
 
-
+  /**
+   * @param {WebGLRenderingContext | WebGL2RenderingContext} gl  The webgl context this Sync belongs to
+   */
   constructor(gl: WebGLRenderingContext | WebGL2RenderingContext) {
 
     this.gl = gl;
@@ -38,9 +43,17 @@ export default class Sync {
 
   }
 
-
+  /**
+   * Call {@link Sync#_complete} for every signaled Sync in the pool.
+   */
   static resolve = _resolve;
+  /**
+   * Start the pool auto resolve loop.
+   */
   static auto = _auto;
+  /**
+   * Stop the pool auto resolve loop.
+   */
   static stop = _stop;
 
 
@@ -49,7 +62,9 @@ export default class Sync {
 
 
   /**
-   * actually create a the WebGLSync and insert fence command in the GL command stream
+   * Create a WebGLSync object and insert it in the GL command stream. Then pool this Sync.
+   *
+   * The promise will be resolved when the Sync is signaled.
    */
   insert() {
     if (this._sync === null && !this._invalidated) {
@@ -58,13 +73,15 @@ export default class Sync {
     }
   }
 
-
+  /**
+   * Dispose of everything related related to this Sync.
+   */
   dispose() {
     this._release();
   }
 
   /**
-   * return true if the GL_SYNC_STATUS is GL_SIGNALED
+   * Know whether the `GL_SYNC_STATUS` is `GL_SIGNALED` or not.
    */
   isSignaled() {
     if (this._sync === null) {
@@ -74,25 +91,34 @@ export default class Sync {
   }
 
   /**
-    * shortcut to this.promise.then
-    */
+   * Shortcut to `this.promise.then`.
+   * @param {Function} onFulfilled The callback to be called when the promise is fulfilled
+   * @param {Function} onRejected The callback to be called when the promise is rejected
+   */
   then(onFulfilled: (value: unknown) => unknown, onRejected: (reason: any) => unknown) {
     this.promise.then(onFulfilled, onRejected);
   }
 
   /**
-    * equivalent to gl.clientWaitSync. Sync must be "insert" before calling this, otherwise return GL_WAIT_FAILED.
-    * @param {Number} [timeout  =1e6] in nanosec, default 100ms
-    */
+   * Shortcut to `gl.clientWaitSync`.
+   *
+   * **Important :** The {@link Sync#insert} method must have been called before calling this method.
+   *
+   * @param {number} [timeout=1e6] The time to wait for the sync object to become signaled (in nanosec), defaults to 100ms
+   */
   clientWaitSync(timeout:number = 1e6) {
     if (this._sync === null) {
       return 0x911D;// GL_WAIT_FAILED;
     }
-    
+
     return this._sync.clientWaitSync(timeout);
   }
 
-
+  /**
+   * Release everything related to this Sync.
+   *
+   * Used by {@link Sync#dispose} and {@link Sync#_complete}.
+   */
   _release() {
     this._defer.reject(null);
     this._unpool();
@@ -103,13 +129,17 @@ export default class Sync {
     }
   }
 
-
+  /**
+   * Resolve the promise and release everything related to this Sync.
+   */
   _complete() {
     this._defer.resolve();
     this._release();
   }
 
-
+  /**
+   * Pool this Sync.
+   */
   _pool() {
     if (!this._pooled) {
       __pool.push(this);
@@ -117,7 +147,9 @@ export default class Sync {
     }
   }
 
-
+  /**
+   * Remove this Sync from the pool.
+   */
   _unpool() {
     if (this._pooled) {
       __pool.splice(__pool.indexOf(this), 1);
@@ -130,19 +162,29 @@ export default class Sync {
 };
 
 
-
-interface ISyncImplementation {
+/** The implementation of a WebGLSync object. */
+export interface ISyncImplementation {
+  /**
+   * Know whether the `GL_SYNC_STATUS` is `GL_SIGNALED` or not.
+   */
   isSignaled(): boolean;
+  /**
+   * Dispose of everything related to this SyncImplementation.
+   */
   dispose(): void;
+  /**
+   * Shortcut to `gl.clientWaitSync`.
+   * @param {number} timeout The time to wait for the sync object to become signaled (in nanosec)
+   */
   clientWaitSync(timeout: number): GLenum;
 }
 
 
-//    _  _      _   _           ___            _ 
+//    _  _      _   _           ___            _
 //   | \| |__ _| |_(_)_ _____  |_ _|_ __  _ __| |
 //   | .` / _` |  _| \ V / -_)  | || '  \| '_ \ |
 //   |_|\_\__,_|\__|_|\_/\___| |___|_|_|_| .__/_|
-//                                       |_|     
+//                                       |_|
 
 class NativeImpl implements ISyncImplementation {
 
@@ -174,11 +216,11 @@ class NativeImpl implements ISyncImplementation {
 }
 
 
-//    ___ _    _         ___            _ 
+//    ___ _    _         ___            _
 //   / __| |_ (_)_ __   |_ _|_ __  _ __| |
 //   \__ \ ' \| | '  \   | || '  \| '_ \ |
 //   |___/_||_|_|_|_|_| |___|_|_|_| .__/_|
-//                                |_|     
+//                                |_|
 
 
 class ShimImpl implements ISyncImplementation {
@@ -197,11 +239,11 @@ class ShimImpl implements ISyncImplementation {
 }
 
 
-//                   _                 _      _       
-//    _ __  ___  ___| |  _  _ _ __  __| |__ _| |_ ___ 
+//                   _                 _      _
+//    _ __  ___  ___| |  _  _ _ __  __| |__ _| |_ ___
 //   | '_ \/ _ \/ _ \ | | || | '_ \/ _` / _` |  _/ -_)
 //   | .__/\___/\___/_|  \_,_| .__/\__,_\__,_|\__\___|
-//   |_|                     |_|                      
+//   |_|                     |_|
 
 const __pool : Sync[] = [];
 
@@ -236,4 +278,3 @@ function _factory(gl: WebGLRenderingContext | WebGL2RenderingContext): ISyncImpl
     return new ShimImpl();
   }
 }
-
